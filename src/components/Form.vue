@@ -43,11 +43,21 @@
               </div>
               <div class="col-6">
                 <label for="gender" class="form-label">Gender</label>
-                <select class="form-select" id="gender" v-model="formData.gender">
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
+                <select 
+                class="form-select" 
+                id="gender" 
+                v-model="formData.gender"
+                @blur="() => validateGender(true)"
+                @change="() => validateGender(false)"
+                >
+                <option value="">Please select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
                 </select>
+                <div v-if="errors.gender" class="text-danger">
+                {{ errors.gender }}
+                </div>
               </div>
             </div>
             <div class="mb-3">
@@ -59,21 +69,18 @@
               <button type="button" class="btn btn-secondary" @click="clearForm">Clear</button>
             </div>
           </form>
-            <div class="row mt-5" v-if="submittedCards.length">
-            <div class="d-flex flex-wrap justify-content-start">
-                <div v-for="(card, index) in submittedCards" :key="index" class="card m-2" style="width: 18rem;">
-                <div class="card-header">
-                    User Information
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Username: {{ card.username }}</li>
-                    <li class="list-group-item">Password: {{ card.password }}</li>
-                    <li class="list-group-item">Australian Resident: {{ card.isAustralian ? 'Yes' : 'No' }}</li>
-                    <li class="list-group-item">Gender: {{ card.gender }}</li>
-                    <li class="list-group-item">Reason: {{ card.reason }}</li>
-                </ul>
-                </div>
-            </div>
+            <div class="card mt-5">
+            <DataTable :value="submittedCards" responsiveLayout="scroll">
+                <Column field="username" header="Username"></Column>
+                <Column field="password" header="Password"></Column>
+                <Column field="isAustralian" header="Australian Resident">
+                <template #body="slotProps">
+                    {{ slotProps.data.isAustralian ? 'Yes' : 'No' }}
+                </template>
+                </Column>
+                <Column field="gender" header="Gender"></Column>
+                <Column field="reason" header="Reason"></Column>
+            </DataTable>
             </div>
         </div>
       </div>
@@ -83,6 +90,11 @@
 <script setup>
 /* Our logic will go here */
 import { ref } from 'vue';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import ColumnGroup from 'primevue/columngroup';   // optional
+import Row from 'primevue/row';                   // optional
+
   
 const formData = ref({
     username: '',
@@ -149,6 +161,14 @@ const validatePassword = (blur) => {
     if (blur) errors.value.password = "Password must contain at least one special character.";
   } else {
     errors.value.password = null;
+  }
+};
+
+const validateGender = (blur) => {
+  if (!formData.value.gender) {
+    if (blur) errors.value.gender = "Please select a gender";
+  } else {
+    errors.value.gender = null;
   }
 };
 </script>
