@@ -3,12 +3,21 @@ import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
 import JSON from './components/JSON.vue'
 import Form from './components/Form.vue'
+import BHeader from './components/BHeader.vue'
 </script>
 
 <template>
-  <main>
-    <Form />
-  </main>
+  <div class="main-container">
+    <header>
+      <BHeader />
+    </header>
+
+    <main class="main-box">
+      <div class="container mt-5">
+        <router-view></router-view>
+      </div>
+    </main>
+  </div>
 </template>
 
 <style scoped>

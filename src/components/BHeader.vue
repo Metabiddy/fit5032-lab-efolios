@@ -1,0 +1,20 @@
+<template>
+    <!-- Using Bootstrap Header template -->
+    <div class="container">
+        <header class="d-flex justify-content-center py-3">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <router-link to="/" class="nav-link active" aria-current="page">Home (week5)</router-link>
+                </li>
+                <li class="nav-item"><router-link to="/about" class="nav-link">About</router-link></li>
+            </ul>
+        </header>
+    </div>
+</template>
+
+<script setup>
+
+</script>
+
+<style scoped>
+</style>

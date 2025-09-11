@@ -1,7 +1,7 @@
 <template>
     <div class="container mt-5">
       <div class="row">
-        <div class="col-md-8 offset-md-2">
+        <div class="col-12">
           <h1 class="text-center">User Information Form</h1>
           <form @submit.prevent="submitForm">
             <div class="row mb-3">
@@ -19,6 +19,19 @@
                     {{ errors.username }}   
                 </div>
               </div>
+
+              <div class="col-6">
+                <label for="gender" class="form-label">Gender</label>
+                <select class="form-select" id="gender" v-model="formData.gender" @blur="() => validateGender(true)" @change="() => validateGender(false)">
+                  <option value="">Please select</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+            </div>
+            <div class="row mb-3">
               <div class="col-6">
                 <label for="password" class="form-label">Password</label>
                 <input
@@ -33,7 +46,19 @@
                 {{ errors.password }}
                 </div>
               </div>
+              <div class="col-md-6 col-sm-6">
+                <label for="confirm-password" class="form-label">Confirm password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="confirm-password"
+                  v-model="formData.confirmPassword"
+                  @blur="() => validateConfirmPassword(true)"
+                />
+                <div v-if="errors.confirmPassword" class="text-danger">{{ errors.confirmPassword }}</div>
+              </div>
             </div>
+
             <div class="row mb-3">
               <div class="col-6">
                 <div class="form-check">
@@ -41,24 +66,7 @@
                   <label class="form-check-label" for="isAustralian">Australian Resident?</label>
                 </div>
               </div>
-              <div class="col-6">
-                <label for="gender" class="form-label">Gender</label>
-                <select 
-                class="form-select" 
-                id="gender" 
-                v-model="formData.gender"
-                @blur="() => validateGender(true)"
-                @change="() => validateGender(false)"
-                >
-                <option value="">Please select</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-                </select>
-                <div v-if="errors.gender" class="text-danger">
-                {{ errors.gender }}
-                </div>
-              </div>
+
             </div>
             <div class="mb-3">
               <label for="reason" class="form-label">Reason for joining</label>
@@ -97,12 +105,13 @@ import Row from 'primevue/row';                   // optional
 
   
 const formData = ref({
-    username: '',
-    password: '',
-    isAustralian: false,
-    reason: '',
-    gender: ''
-});
+  username: '',
+  password: '',
+  confirmPassword: '',
+  isAustralian: false,
+  reason: '',
+  gender: ''
+})
 
 const submittedCards = ref([]);
 
@@ -128,10 +137,11 @@ const clearForm = () => {
 const errors = ref({
   username: null,
   password: null,
+  confirmPassword: null,
   resident: null,
   gender: null,
-  reason: null,
-});
+  reason: null
+})
 
 const validateName = (blur) => {
   if (formData.value.username.length < 3) {
@@ -171,6 +181,18 @@ const validateGender = (blur) => {
     errors.value.gender = null;
   }
 };
+
+/**
+ * Confirm password validation function that checks if the password and confirm password fields match.
+ * @param blur: boolean - If true, the function will display an error message if the passwords do not match.
+ */
+ const validateConfirmPassword = (blur) => {
+  if (formData.value.password !== formData.value.confirmPassword) {
+    if (blur) errors.value.confirmPassword = 'Passwords do not match.'
+  } else {
+    errors.value.confirmPassword = null
+  }
+}
 </script>
 
 <style scoped>
