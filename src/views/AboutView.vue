@@ -1,8 +1,15 @@
 <template>
+<<<<<<< HEAD
   <div class="about">
     <h1>About Our Library</h1>
     <p>Welcome to our digital library! We're dedicated to providing a vast collection of books and</p>
   </div>
+=======
+    <div class="about">
+      <h1>About Our Library</h1>
+      <p>Welcome to our digital library! We're dedicated to providing a vast collection of books and resources to our community.</p>
+    </div>
+>>>>>>> 5767ac824709e7b443b0e01c241e85702b44d4df
 </template>
 
 <script setup>

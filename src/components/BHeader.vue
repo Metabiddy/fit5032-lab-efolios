@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div class="container">
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
@@ -60,3 +61,24 @@
   outline: 0;
 }
 </style>
+=======
+    <!-- Using Bootstrap Header template -->
+    <div class="container">
+        <header class="d-flex justify-content-center py-3">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <router-link to="/" class="nav-link active" aria-current="page">Home (week5)</router-link>
+                </li>
+                <li class="nav-item"><router-link to="/about" class="nav-link">About</router-link></li>
+            </ul>
+        </header>
+    </div>
+</template>
+
+<script setup>
+
+</script>
+
+<style scoped>
+</style>
+>>>>>>> 5767ac824709e7b443b0e01c241e85702b44d4df

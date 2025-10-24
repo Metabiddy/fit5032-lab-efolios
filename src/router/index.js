@@ -1,10 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
+<<<<<<< HEAD
 import GetBookCountView from '../views/GetBookCountView.vue'
 import AddBookView from '../views/AddBookView.vue'
 import WeatherView from '@/views/WeatherView.vue'
 import CountBookAPI from '@/views/CountBookAPI.vue'
+=======
+>>>>>>> 5767ac824709e7b443b0e01c241e85702b44d4df
 
 const routes = [
   {
@@ -16,6 +19,7 @@ const routes = [
     path: '/about',
     name: 'About',
     component: AboutView
+<<<<<<< HEAD
   },
   {
     path: '/GetBookCount',
@@ -36,6 +40,8 @@ const routes = [
     path: '/CountBookAPI',
     name: 'CountBookAPI',
     component: CountBookAPI
+=======
+>>>>>>> 5767ac824709e7b443b0e01c241e85702b44d4df
   }
 ]
 

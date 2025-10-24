@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <template>
   <div class="main-container">
     <header v-if="showHeader">
@@ -5,6 +6,26 @@
     </header>
     <main class="main-box">
       <router-view></router-view>
+=======
+<script setup>
+import HelloWorld from './components/HelloWorld.vue'
+import TheWelcome from './components/TheWelcome.vue'
+import JSON from './components/JSON.vue'
+import Form from './components/Form.vue'
+import BHeader from './components/BHeader.vue'
+</script>
+
+<template>
+  <div class="main-container">
+    <header>
+      <BHeader />
+    </header>
+
+    <main class="main-box">
+      <div class="container mt-5">
+        <router-view></router-view>
+      </div>
+>>>>>>> 5767ac824709e7b443b0e01c241e85702b44d4df
     </main>
   </div>
 </template>
