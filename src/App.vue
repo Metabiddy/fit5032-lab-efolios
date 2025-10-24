@@ -1,14 +1,33 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-import JSON from './components/JSON.vue'
-</script>
-
 <template>
-  <main>
-    <JSON />
-  </main>
+  <div class="main-container">
+    <header v-if="showHeader">
+      <BHeader />
+    </header>
+    <main class="main-box">
+      <router-view></router-view>
+    </main>
+  </div>
 </template>
+
+<script>
+
+import BHeader from './components/BHeader.vue';
+import CountBookAPI from './views/CountBookAPI.vue';
+
+export default {
+  name: 'App',
+  components: {
+    // Register the BHeader component.
+    BHeader,
+    CountBookAPI
+  },
+  computed: {
+    showHeader() {
+      return this.$route.name !== 'CountBookAPI';
+    }
+  }
+};
+</script>
 
 <style scoped>
 header {
